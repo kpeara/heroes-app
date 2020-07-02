@@ -13,6 +13,11 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col class="d-flex justify-center">
+        <v-btn class="red lighten-1 red--text text--lighten-4">Add Hero</v-btn>
+      </v-col>
+    </v-row>
   </v-content>
 </template>
 
