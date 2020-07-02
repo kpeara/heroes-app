@@ -5,7 +5,7 @@
         <v-card dark shaped class="mx-4">
           <v-card-title class="headline">{{hero.name}}</v-card-title>
 
-          <v-card-subtitle class="mt-n2">
+          <v-card-subtitle class="my-n2">
             <div v-if="hero.year">{{"YEAR: " + hero.year}}</div>
             <div>{{"INFO: " + hero.info}}</div>
           </v-card-subtitle>
