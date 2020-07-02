@@ -11,13 +11,13 @@
         <v-container>
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Hero Name*" required></v-text-field>
+              <v-text-field label="Hero Name*" required v-model="name"></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Year"></v-text-field>
+              <v-text-field label="Year" v-model="year"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field label="Info" required></v-text-field>
+              <v-text-field label="Info" required v-model="info"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -39,15 +39,24 @@ export default {
     heroes: null
   },
   data: () => ({
-    dialog: false
+    dialog: false,
+    name: null,
+    info: null,
+    year: null
   }),
   methods: {
     addHero() {
       this.dialog = false;
-      const data = {
-        name: "Black Panther",
-        info: "King. Rich. Panther"
-      };
+
+      const data = {};
+      data["name"] = this.name;
+      data["info"] = this.info;
+      // optional fields
+      if (this.year) {
+        data["year"] = this.year;
+      }
+      console.log(data);
+
       let PORT = this.PORT ? this.PORT : 3000;
       fetch(`http://localhost:${PORT}/api/heroes/`, {
         method: "POST",
