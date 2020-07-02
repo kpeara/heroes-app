@@ -7,9 +7,9 @@
         <v-icon>mdi-github</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-content class="blue lighten-2">
+    <v-main class="blue lighten-2">
       <Home />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
