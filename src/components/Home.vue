@@ -1,5 +1,11 @@
 <template>
-  <v-main>
+  <v-main class="mt-n8">
+    <v-row>
+      <v-col class="ml-8">
+        <!-- <v-btn class="red white--text" @click="addHero">Add Hero</v-btn> -->
+        <HeroData />
+      </v-col>
+    </v-row>
     <v-row dense>
       <v-col v-for="(hero, i) in heroes" :key="i" cols="12">
         <v-card dark shaped class="mx-4">
@@ -18,15 +24,21 @@
     </v-row>
     <v-row>
       <v-col class="d-flex justify-center">
-        <v-btn class="red white--text" @click="addHero">Add Hero</v-btn>
+        <!-- <v-btn class="red white--text" @click="addHero">Add Hero</v-btn> -->
+        <HeroData />
       </v-col>
     </v-row>
   </v-main>
 </template>
 
 <script>
+import HeroData from "./HeroData";
+
 export default {
   name: "Home",
+  components: {
+    HeroData
+  },
   data: () => ({
     PORT: 3000,
     heroes: [
@@ -42,7 +54,7 @@ export default {
   }),
   created() {
     let PORT = this.PORT ? this.PORT : 3000;
-    fetch(`http://localhost:${PORT}/api/heroes`, { mode: "cors" })
+    fetch(`http://localhost:${PORT}/api/heroes?`, { mode: "cors" })
       .then(res => {
         return res.json();
       })
