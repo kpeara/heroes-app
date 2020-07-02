@@ -1,6 +1,6 @@
 <template>
-  <v-main class="mt-n8">
-    <v-row>
+  <v-main class="mt-n10">
+    <v-row class="mb-2">
       <v-col class="ml-8">
         <!-- <v-btn class="red white--text" @click="addHero">Add Hero</v-btn> -->
         <HeroData />
@@ -20,12 +20,6 @@
             <v-btn text>Edit</v-btn>
           </v-card-actions>
         </v-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col class="d-flex justify-center">
-        <!-- <v-btn class="red white--text" @click="addHero">Add Hero</v-btn> -->
-        <HeroData />
       </v-col>
     </v-row>
   </v-main>
