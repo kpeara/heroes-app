@@ -1,13 +1,13 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar app dark>
       <v-toolbar-title>Heroes App</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn href="https://github.com/kpeara" target="_blank" text fab>
         <v-icon>mdi-github</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-content>
+    <v-content class="blue lighten-2">
       <Home />
     </v-content>
   </v-app>
