@@ -26,7 +26,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-        <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+        <v-btn color="blue darken-1" text @click="addHero">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -35,9 +35,37 @@
 <script>
 export default {
   name: "HeroData",
+  props: {
+    heroes: null
+  },
   data: () => ({
     dialog: false
-  })
+  }),
+  methods: {
+    addHero() {
+      this.dialog = false;
+      const data = {
+        name: "Black Panther",
+        info: "King. Rich. Panther"
+      };
+      let PORT = this.PORT ? this.PORT : 3000;
+      fetch(`http://localhost:${PORT}/api/heroes/`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(resp => {
+          return resp.json();
+        })
+        .then(data => {
+          this.heroes.push(data);
+        })
+        .catch(err => console.log(err));
+    }
+  }
 };
 </script>
 
