@@ -71,7 +71,17 @@ export default {
       fetch(`http://localhost:${PORT}/api/heroes/${id}`, {
         method: "DELETE",
         mode: "cors"
-      }).catch(err => console.log(err));
+      })
+        .then(resp => {
+          return resp.json();
+        })
+        .then(data => {
+          // delete from array
+          this.heroes = this.heroes.filter(hero => {
+            return hero.id !== data.id;
+          });
+        })
+        .catch(err => console.log(err));
     }
   }
 };
