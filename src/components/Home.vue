@@ -23,7 +23,7 @@
 
           <v-card-actions>
             <EditHero :hero="hero" />
-            <v-btn text class="pink--text">Remove</v-btn>
+            <v-btn text class="pink--text" @click="deleteHero(hero.id)">Remove</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -66,7 +66,13 @@ export default {
       .catch(err => console.log(err));
   },
   methods: {
-    //
+    deleteHero(id) {
+      let PORT = this.PORT ? this.PORT : 3000;
+      fetch(`http://localhost:${PORT}/api/heroes/${id}`, {
+        method: "DELETE",
+        mode: "cors"
+      }).catch(err => console.log(err));
+    }
   }
 };
 </script>
