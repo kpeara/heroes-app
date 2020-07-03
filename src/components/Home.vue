@@ -2,22 +2,28 @@
   <v-main class="mt-n10 mb-4">
     <v-row class="mb-2">
       <v-col class="ml-8">
-        <!-- <v-btn class="red white--text" @click="addHero">Add Hero</v-btn> -->
-        <HeroData :heroes="this.heroes" />
+        <HeroData :heroes="this.heroes" btnName="Add Hero" btnStyles="py-6 red--text" />
       </v-col>
     </v-row>
     <v-row dense>
       <v-col v-for="(hero, i) in heroes" :key="i" cols="12">
         <v-card dark shaped class="mx-4">
-          <v-card-title class="headline">{{hero.name}}</v-card-title>
+          <v-card-title class="headline ml-1">{{hero.name}}</v-card-title>
 
-          <v-card-subtitle class="my-n2">
-            <div v-if="hero.year">{{"YEAR: " + hero.year}}</div>
-            <div>{{"INFO: " + hero.info}}</div>
+          <v-card-subtitle class="my-n2 ml-2">
+            <div v-if="hero.year">
+              <span class="font-weight-bold">YEAR:</span>
+              {{hero.year}}
+            </div>
+            <div>
+              <span class="font-weight-bold">INFO:</span>
+              {{hero.info}}
+            </div>
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn text>Edit</v-btn>
+            <HeroData :heroes="null" btnName="Edit" :btnFlat="flatten" />
+            <HeroData :heroes="null" btnName="Remove" :btnFlat="flatten" />
           </v-card-actions>
         </v-card>
       </v-col>
@@ -44,7 +50,8 @@ export default {
       //     info:
       //       "Batman is a fictional superhero..."
       //   },
-    ]
+    ],
+    flatten: true
   }),
   created() {
     let PORT = this.PORT ? this.PORT : 3000;

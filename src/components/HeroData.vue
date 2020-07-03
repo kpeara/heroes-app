@@ -1,11 +1,11 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn dark v-bind="attrs" v-on="on" class="py-6 red--text">Add Hero</v-btn>
+      <v-btn dark v-bind="attrs" v-on="on" :text="btnFlat" :class="btnStyles">{{ btnName }}</v-btn>
     </template>
     <v-card>
       <v-card-title class="blue lighten-1">
-        <span class="headline white--text">Add Hero</span>
+        <span class="headline white--text">{{btnName}}</span>
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
@@ -43,7 +43,10 @@
 export default {
   name: "HeroData",
   props: {
-    heroes: null
+    heroes: Array,
+    btnName: String,
+    btnStyles: String,
+    btnFlat: Boolean
   },
   data: () => ({
     dialog: false,
