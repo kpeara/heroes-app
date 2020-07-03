@@ -51,12 +51,10 @@ export default {
     info: "",
     year: "",
     nameRules: [
-      v => typeof v === "string" || "Must use letters",
       v => (v && v.length <= 30) || "Max 30 characters",
       v => (v && v.length >= 3) || "Min 3 characters"
     ],
     infoRules: [
-      v => typeof v === "string" || "Must use letters",
       v => (v && v.length <= 200) || "Max 200 characters",
       v => (v && v.length >= 3) || "Min 5 characters"
     ],
