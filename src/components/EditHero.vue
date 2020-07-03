@@ -17,14 +17,14 @@
                 counter
                 maxlength="30"
                 required
-                v-model="hero.name"
+                v-model="oldHero.name"
               ></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Year" maxlength="4" :rules="yearRules" v-model="hero.year"></v-text-field>
+              <v-text-field label="Year" maxlength="4" :rules="yearRules" v-model="oldHero.year"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field label="Info*" required :rules="infoRules" v-model="hero.info"></v-text-field>
+              <v-text-field label="Info*" required :rules="infoRules" v-model="oldHero.info"></v-text-field>
             </v-col>
           </v-row>
         </v-form>
@@ -32,7 +32,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+        <v-btn color="blue darken-1" text @click="reset">Close</v-btn>
         <v-btn color="blue darken-1" text>Save</v-btn>
       </v-card-actions>
     </v-card>
@@ -41,12 +41,13 @@
 
 <script>
 export default {
-  name: "AddHero",
+  name: "EditHero",
   props: {
     hero: Object
   },
   data: () => ({
     dialog: false,
+    oldHero: null,
     nameRules: [
       v => (v && v.length <= 30) || "Max 30 characters",
       v => (v && v.length >= 3) || "Min 3 characters"
@@ -63,8 +64,17 @@ export default {
         "Valid year"
     ]
   }),
+  created() {
+    this.oldHero = { ...this.hero };
+  },
   methods: {
-    //
+    reset() {
+      this.dialog = false;
+      // resetting values
+      this.oldHero.name = this.hero.name;
+      this.oldHero.year = this.hero.year;
+      this.oldHero.info = this.hero.info;
+    }
   }
 };
 </script>

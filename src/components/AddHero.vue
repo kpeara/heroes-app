@@ -59,6 +59,7 @@ export default {
       v => (v && v.length >= 3) || "Min 5 characters"
     ],
     yearRules: [
+      // CHANGE TO NUMBER
       v => !v || v.length == 4 || "Valid year",
       v =>
         !v ||
