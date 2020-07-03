@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn dark v-bind="attrs" v-on="on" text>Edit</v-btn>
+      <v-btn dark text class="lime--text text--accent-3" v-bind="attrs" v-on="on">Edit</v-btn>
     </template>
     <v-card>
       <v-card-title class="blue lighten-1">
@@ -74,6 +74,26 @@ export default {
       this.hero.name = this.newHero.name;
       this.hero.year = this.newHero.year;
       this.hero.info = this.newHero.info;
+
+      // Data
+      const data = {};
+      data["name"] = this.hero.name;
+      data["info"] = this.hero.info;
+      // optional fields
+      if (this.year) {
+        data["year"] = parseInt(this.hero.year);
+      }
+
+      // PUT Request
+      let PORT = this.PORT ? this.PORT : 3000;
+      fetch(`http://localhost:${PORT}/api/heroes/${this.hero.id}`, {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }).catch(err => console.log(err));
     },
     reset() {
       this.dialog = false;

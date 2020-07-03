@@ -1,10 +1,10 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn dark v-bind="attrs" v-on="on" class="py-6 red--text">Add Hero</v-btn>
+      <v-btn dark v-bind="attrs" v-on="on" class="py-6 green--text text--accent-4">Add Hero</v-btn>
     </template>
     <v-card>
-      <v-card-title class="blue lighten-1">
+      <v-card-title class="green accent-4">
         <span class="headline white--text">Add Hero</span>
       </v-card-title>
       <v-card-text>
@@ -32,8 +32,8 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-        <v-btn color="blue darken-1" text @click="validate">Save</v-btn>
+        <v-btn color="green darken-1" text @click="dialog = false">Cancel</v-btn>
+        <v-btn color="green darken-1" text @click="validate">Add</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
