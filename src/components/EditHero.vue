@@ -17,14 +17,14 @@
                 counter
                 maxlength="30"
                 required
-                v-model="oldHero.name"
+                v-model="newHero.name"
               ></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Year" maxlength="4" :rules="yearRules" v-model="oldHero.year"></v-text-field>
+              <v-text-field label="Year" maxlength="4" :rules="yearRules" v-model="newHero.year"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field label="Info*" required :rules="infoRules" v-model="oldHero.info"></v-text-field>
+              <v-text-field label="Info*" required :rules="infoRules" v-model="newHero.info"></v-text-field>
             </v-col>
           </v-row>
         </v-form>
@@ -33,7 +33,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="blue darken-1" text @click="reset">Close</v-btn>
-        <v-btn color="blue darken-1" text>Save</v-btn>
+        <v-btn color="blue darken-1" text @click="updateHero">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -47,7 +47,7 @@ export default {
   },
   data: () => ({
     dialog: false,
-    oldHero: null,
+    newHero: null,
     nameRules: [
       v => (v && v.length <= 30) || "Max 30 characters",
       v => (v && v.length >= 3) || "Min 3 characters"
@@ -65,15 +65,22 @@ export default {
     ]
   }),
   created() {
-    this.oldHero = { ...this.hero };
+    this.newHero = { ...this.hero };
   },
   methods: {
+    updateHero() {
+      this.dialog = false;
+      // updating new value
+      this.hero.name = this.newHero.name;
+      this.hero.year = this.newHero.year;
+      this.hero.info = this.newHero.info;
+    },
     reset() {
       this.dialog = false;
       // resetting values
-      this.oldHero.name = this.hero.name;
-      this.oldHero.year = this.hero.year;
-      this.oldHero.info = this.hero.info;
+      this.newHero.name = this.hero.name;
+      this.newHero.year = this.hero.year;
+      this.newHero.info = this.hero.info;
     }
   }
 };
