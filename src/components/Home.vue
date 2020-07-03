@@ -2,7 +2,12 @@
   <v-main class="mt-n10 mb-4">
     <v-row class="mb-2">
       <v-col class="ml-8">
-        <AddHero :heroes="this.heroes" />
+        <AddHero
+          :heroes="this.heroes"
+          :nameRules="nameRules"
+          :yearRules="yearRules"
+          :infoRules="infoRules"
+        />
       </v-col>
     </v-row>
     <v-row dense>
@@ -22,7 +27,12 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <EditHero :hero="hero" />
+            <EditHero
+              :hero="hero"
+              :nameRules="nameRules"
+              :yearRules="yearRules"
+              :infoRules="infoRules"
+            />
             <v-btn text class="pink--text" @click="deleteHero(hero.id)">Remove</v-btn>
           </v-card-actions>
         </v-card>
@@ -52,6 +62,21 @@ export default {
       //     info:
       //       "Nah nah nah"
       //   },
+    ],
+    nameRules: [
+      v => (v && v.length <= 30) || "Max 30 characters",
+      v => (v && v.length >= 3) || "Min 3 characters"
+    ],
+    infoRules: [
+      v => (v && v.length <= 200) || "Max 200 characters",
+      v => (v && v.length >= 3) || "Min 5 characters"
+    ],
+    yearRules: [
+      v => !v || v.length == 4 || "Valid year",
+      v =>
+        !v ||
+        (parseInt(v) && parseInt(v) <= new Date().getUTCFullYear()) ||
+        "Valid year"
     ]
   }),
   created() {

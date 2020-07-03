@@ -13,6 +13,3 @@ export default {
   name: "Navbar"
 };
 </script>
-
-<style>
-</style>
