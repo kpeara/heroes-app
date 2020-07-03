@@ -1,5 +1,5 @@
 <template>
-  <v-main class="mt-n10">
+  <v-main class="mt-n10 mb-4">
     <v-row class="mb-2">
       <v-col class="ml-8">
         <!-- <v-btn class="red white--text" @click="addHero">Add Hero</v-btn> -->
@@ -58,29 +58,7 @@ export default {
       .catch(err => console.log(err));
   },
   methods: {
-    // addHero() {
-    //   const data = {
-    //     name: "Wonder Woman",
-    //     info:
-    //       "Amazonian Warrior and memeber of Justice League. Brought to life by Zeus from clay. Alias: Diana Prince."
-    //   };
-    //   let PORT = this.PORT ? this.PORT : 3000;
-    //   fetch(`http://localhost:${PORT}/api/heroes/`, {
-    //     method: "POST",
-    //     mode: "cors",
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify(data)
-    //   })
-    //     .then(resp => {
-    //       return resp.json();
-    //     })
-    //     .then(data => {
-    //       this.heroes.push(data);
-    //     })
-    //     .catch(err => console.log(err));
-    // }
+    //
   }
 };
 </script>

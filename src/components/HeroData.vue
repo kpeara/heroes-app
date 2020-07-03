@@ -11,13 +11,20 @@
         <v-container>
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Hero Name*" required v-model="name"></v-text-field>
+              <v-text-field
+                label="Hero Name*"
+                :rules="nameRules"
+                counter
+                maxlength="30"
+                required
+                v-model="name"
+              ></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Year" v-model="year"></v-text-field>
+              <v-text-field label="Year" maxlength="4" :rules="yearRules" v-model="year"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field label="Info" required v-model="info"></v-text-field>
+              <v-text-field label="Info*" required :rules="infoRules" v-model="info"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -40,9 +47,23 @@ export default {
   },
   data: () => ({
     dialog: false,
-    name: null,
-    info: null,
-    year: null
+    name: "",
+    info: "",
+    year: "",
+    nameRules: [
+      v => (v && v.length <= 30) || "Max 30 characters",
+      v => (v && v.length >= 3) || "Min 3 characters"
+    ],
+    infoRules: [
+      v => (v && v.length <= 200) || "Max 200 characters",
+      v => (v && v.length >= 3) || "Min 5 characters"
+    ],
+    yearRules: [
+      v => (v && v.length === 4) || "Valid year",
+      v =>
+        (parseInt(v) && parseInt(v) <= new Date().getUTCFullYear()) ||
+        "Valid year"
+    ]
   }),
   methods: {
     addHero() {
@@ -55,7 +76,8 @@ export default {
       if (this.year) {
         data["year"] = this.year;
       }
-      console.log(data);
+
+      // ADD VALIDATION
 
       let PORT = this.PORT ? this.PORT : 3000;
       fetch(`http://localhost:${PORT}/api/heroes/`, {
