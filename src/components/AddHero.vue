@@ -41,9 +41,9 @@
 
 <script>
 export default {
-  name: "HeroData",
+  name: "AddHero",
   props: {
-    heroes: null
+    heroes: Array
   },
   data: () => ({
     dialog: false,

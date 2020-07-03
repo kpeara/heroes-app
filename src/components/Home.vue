@@ -2,8 +2,7 @@
   <v-main class="mt-n10 mb-4">
     <v-row class="mb-2">
       <v-col class="ml-8">
-        <!-- <v-btn class="red white--text" @click="addHero">Add Hero</v-btn> -->
-        <HeroData :heroes="this.heroes" />
+        <AddHero :heroes="this.heroes" />
       </v-col>
     </v-row>
     <v-row dense>
@@ -33,12 +32,12 @@
 </template>
 
 <script>
-import HeroData from "./HeroData";
+import AddHero from "./AddHero";
 
 export default {
   name: "Home",
   components: {
-    HeroData
+    AddHero
   },
   data: () => ({
     PORT: 3000,
@@ -49,7 +48,7 @@ export default {
       //     name: "Batman",
       //     year: 1939,
       //     info:
-      //       "Batman is a fictional superhero..."
+      //       "Nah nah nah"
       //   },
     ]
   }),
