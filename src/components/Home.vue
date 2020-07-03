@@ -22,7 +22,7 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn text>Edit</v-btn>
+            <EditHero :hero="hero" />
             <v-btn text>Remove</v-btn>
           </v-card-actions>
         </v-card>
@@ -33,11 +33,13 @@
 
 <script>
 import AddHero from "./AddHero";
+import EditHero from "./EditHero";
 
 export default {
   name: "Home",
   components: {
-    AddHero
+    AddHero,
+    EditHero
   },
   data: () => ({
     PORT: 3000,
