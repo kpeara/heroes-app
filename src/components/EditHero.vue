@@ -17,14 +17,14 @@
                 counter
                 maxlength="30"
                 required
-                v-model="name"
+                v-model="hero.name"
               ></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Year" maxlength="4" :rules="yearRules" v-model="year"></v-text-field>
+              <v-text-field label="Year" maxlength="4" :rules="yearRules" v-model="hero.year"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field label="Info*" required :rules="infoRules" v-model="info"></v-text-field>
+              <v-text-field label="Info*" required :rules="infoRules" v-model="hero.info"></v-text-field>
             </v-col>
           </v-row>
         </v-form>
@@ -47,9 +47,6 @@ export default {
   },
   data: () => ({
     dialog: false,
-    name: "",
-    info: "",
-    year: "",
     nameRules: [
       v => (v && v.length <= 30) || "Max 30 characters",
       v => (v && v.length >= 3) || "Min 3 characters"
