@@ -23,7 +23,7 @@
 
           <v-card-actions>
             <EditHero :hero="hero" />
-            <v-btn text>Remove</v-btn>
+            <v-btn text class="pink--text">Remove</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

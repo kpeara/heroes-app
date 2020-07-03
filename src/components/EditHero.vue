@@ -1,10 +1,10 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn dark text class="lime--text text--accent-3" v-bind="attrs" v-on="on">Edit</v-btn>
+      <v-btn dark text class="yellow--text text--darken-2" v-bind="attrs" v-on="on">Edit</v-btn>
     </template>
     <v-card>
-      <v-card-title class="blue lighten-1">
+      <v-card-title class="yellow darken-3">
         <span class="headline white--text">{{hero.name}}</span>
       </v-card-title>
       <v-card-text>
