@@ -22,8 +22,15 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <HeroData :heroes="null" btnName="Edit" :btnFlat="flatten" />
-            <HeroData :heroes="null" btnName="Remove" :btnFlat="flatten" />
+            <HeroData
+              :heroes="null"
+              btnName="Edit"
+              :btnFlat="flatten"
+              :heroName="hero.name"
+              :heroYear="hero.year"
+              :heroInfo="hero.info"
+            />
+            <v-btn text>Remove</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -47,8 +54,7 @@ export default {
       //     id: 1,
       //     name: "Batman",
       //     year: 1939,
-      //     info:
-      //       "Batman is a fictional superhero..."
+      //     info: "Nah nah nah..."
       //   },
     ],
     flatten: true

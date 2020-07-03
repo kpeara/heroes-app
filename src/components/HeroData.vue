@@ -46,7 +46,10 @@ export default {
     heroes: Array,
     btnName: String,
     btnStyles: String,
-    btnFlat: Boolean
+    btnFlat: Boolean,
+    heroName: String,
+    heroInfo: String,
+    heroYear: Number
   },
   data: () => ({
     dialog: false,
