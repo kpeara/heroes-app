@@ -2,7 +2,8 @@
   <v-main class="mt-n10 mb-4">
     <v-row class="mb-2">
       <v-col class="ml-8">
-        <HeroData :heroes="this.heroes" btnName="Add Hero" btnStyles="py-6 red--text" />
+        <!-- <v-btn class="red white--text" @click="addHero">Add Hero</v-btn> -->
+        <HeroData :heroes="this.heroes" />
       </v-col>
     </v-row>
     <v-row dense>
@@ -22,14 +23,7 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <HeroData
-              :heroes="null"
-              btnName="Edit"
-              :btnFlat="flatten"
-              :name="hero.name"
-              :year="hero.year"
-              :info="hero.info"
-            />
+            <v-btn text>Edit</v-btn>
             <v-btn text>Remove</v-btn>
           </v-card-actions>
         </v-card>
@@ -54,10 +48,10 @@ export default {
       //     id: 1,
       //     name: "Batman",
       //     year: 1939,
-      //     info: "Nah nah nah..."
+      //     info:
+      //       "Batman is a fictional superhero..."
       //   },
-    ],
-    flatten: true
+    ]
   }),
   created() {
     let PORT = this.PORT ? this.PORT : 3000;
