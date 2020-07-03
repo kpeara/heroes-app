@@ -26,9 +26,9 @@
               :heroes="null"
               btnName="Edit"
               :btnFlat="flatten"
-              :heroName="hero.name"
-              :heroYear="hero.year"
-              :heroInfo="hero.info"
+              :name="hero.name"
+              :year="hero.year"
+              :info="hero.info"
             />
             <v-btn text>Remove</v-btn>
           </v-card-actions>

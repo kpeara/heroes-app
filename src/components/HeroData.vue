@@ -17,7 +17,8 @@
                 counter
                 maxlength="30"
                 required
-                v-model="name"
+                v-bind:value="name"
+                v-on:input="$emit('input', $event.target.value)"
               ></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
