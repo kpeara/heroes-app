@@ -49,7 +49,7 @@ export default {
     dialog: false,
     name: "",
     info: "",
-    year: "",
+    year: null,
     nameRules: [
       v => (v && v.length <= 30) || "Max 30 characters",
       v => (v && v.length >= 3) || "Min 3 characters"
@@ -78,10 +78,6 @@ export default {
       if (this.year) {
         data["year"] = parseInt(this.year);
       }
-
-      // NOTE: glitch (most likely API Problem)
-      // using numbers in name and info field cause problems
-      // try name = 1111, info = 1111, year = 1111
 
       let PORT = this.PORT ? this.PORT : 3000;
       fetch(`http://localhost:${PORT}/api/heroes/`, {
