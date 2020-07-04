@@ -3,7 +3,7 @@
     <v-row class="mb-2">
       <v-col class="ml-8">
         <AddHero
-          :heroes="this.heroes"
+          @hero-emitted="addHero($event)"
           :nameRules="nameRules"
           :yearRules="yearRules"
           :infoRules="infoRules"
@@ -33,7 +33,7 @@
               :yearRules="yearRules"
               :infoRules="infoRules"
             />
-            <RemoveHero @delete-hero="deleteHero($event)" :hero="hero" />
+            <RemoveHero @hero-emitted="deleteHero($event)" :hero="hero" />
           </v-card-actions>
         </v-card>
       </v-col>
@@ -93,22 +93,36 @@ export default {
       .catch(err => console.log(err));
   },
   methods: {
+    addHero(data) {
+      let PORT = this.PORT ? this.PORT : 3000;
+      fetch(`http://localhost:${PORT}/api/heroes/`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(resp => {
+          return resp.json();
+        })
+        .then(data => {
+          this.heroes.push(data);
+        })
+        .catch(err => console.log(err));
+    },
     deleteHero(id) {
-      //   let PORT = this.PORT ? this.PORT : 3000;
-      //   fetch(`http://localhost:${PORT}/api/heroes/${id}`, {
-      //     method: "DELETE",
-      //     mode: "cors"
-      //   })
-      //     .then(resp => {
-      //       return resp.json();
-      //     })
-      //     .then(data => {
-      //       // delete from array
-      this.heroes = this.heroes.filter(hero => {
-        return hero.id !== id;
-      });
-      //     })
-      //     .catch(err => console.log(err));
+      let PORT = this.PORT ? this.PORT : 3000;
+      fetch(`http://localhost:${PORT}/api/heroes/${id}`, {
+        method: "DELETE",
+        mode: "cors"
+      })
+        .then(() => {
+          this.heroes = this.heroes.filter(hero => {
+            return hero.id !== id;
+          });
+        })
+        .catch(err => console.log(err));
     }
   }
 };

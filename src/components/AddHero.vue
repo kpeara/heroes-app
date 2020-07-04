@@ -55,9 +55,10 @@ export default {
     year: null
   }),
   methods: {
-    addHero() {
+    emitHero() {
       this.dialog = false;
 
+      // create new hero
       const data = {};
       data["name"] = this.name;
       data["info"] = this.info;
@@ -66,26 +67,11 @@ export default {
         data["year"] = parseInt(this.year);
       }
 
-      let PORT = this.PORT ? this.PORT : 3000;
-      fetch(`http://localhost:${PORT}/api/heroes/`, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      })
-        .then(resp => {
-          return resp.json();
-        })
-        .then(data => {
-          this.heroes.push(data);
-        })
-        .catch(err => console.log(err));
+      this.$emit("hero-emitted", data);
     },
     validate() {
       if (this.$refs.form.validate()) {
-        this.addHero();
+        this.emitHero();
         this.$refs.form.reset();
       }
     }

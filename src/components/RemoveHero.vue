@@ -9,7 +9,7 @@
           class="font-weight-bold"
         >Are you sure you want to delete this hero? All data will be lost and cannot be recovered.</v-col>
         <v-col class="shrink">
-          <v-btn text dark class="mb-4" @click="deleteHero(hero.id)">Remove</v-btn>
+          <v-btn text dark class="mb-4" @click="emitHero(hero.id)">Remove</v-btn>
           <v-btn text dark @click="dialog=false">Cancel</v-btn>
         </v-col>
       </v-row>
@@ -27,19 +27,10 @@ export default {
     dialog: false
   }),
   methods: {
-    deleteHero(id) {
+    emitHero(id) {
       this.dialog = false;
-
-      let PORT = this.PORT ? this.PORT : 3000;
-      fetch(`http://localhost:${PORT}/api/heroes/${id}`, {
-        method: "DELETE",
-        mode: "cors"
-      })
-        .then(() => {
-          // delete from array
-          this.$emit("delete-hero", id);
-        })
-        .catch(err => console.log(err));
+      // emit hero id
+      this.$emit("hero-emitted", id);
     }
   }
 };
