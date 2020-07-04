@@ -57,21 +57,6 @@ export default {
   data: () => ({
     dialog: false,
     newHero: null
-    // nameRules: [
-    //   v => (v && v.length <= 30) || "Max 30 characters",
-    //   v => (v && v.length >= 3) || "Min 3 characters"
-    // ],
-    // infoRules: [
-    //   v => (v && v.length <= 200) || "Max 200 characters",
-    //   v => (v && v.length >= 3) || "Min 5 characters"
-    // ],
-    // yearRules: [
-    //   v => !v || v.length == 4 || "Valid year",
-    //   v =>
-    //     !v ||
-    //     (parseInt(v) && parseInt(v) <= new Date().getUTCFullYear()) ||
-    //     "Valid year"
-    // ]
   }),
   created() {
     this.newHero = { ...this.hero };
