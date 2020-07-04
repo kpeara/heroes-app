@@ -8,7 +8,7 @@ You can add, remove, edit and control the order of your heroes:
 <img src="./images/view.png">
 <img src="./images/add.png">
 <img src="./images/edit.png">
-<img src="./images/remove">
+<img src="./images/remove.png">
 
 Feature I would like to add: User authentication.
 
