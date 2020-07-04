@@ -33,7 +33,7 @@
               :yearRules="yearRules"
               :infoRules="infoRules"
             />
-            <RemoveHero :hero="hero" :heroes="heroes" />
+            <RemoveHero @delete-hero="deleteHero($event)" :hero="hero" />
           </v-card-actions>
         </v-card>
       </v-col>
@@ -93,23 +93,23 @@ export default {
       .catch(err => console.log(err));
   },
   methods: {
-    // deleteHero(id) {
-    //   let PORT = this.PORT ? this.PORT : 3000;
-    //   fetch(`http://localhost:${PORT}/api/heroes/${id}`, {
-    //     method: "DELETE",
-    //     mode: "cors"
-    //   })
-    //     .then(resp => {
-    //       return resp.json();
-    //     })
-    //     .then(data => {
-    //       // delete from array
-    //       this.heroes = this.heroes.filter(hero => {
-    //         return hero.id !== data.id;
-    //       });
-    //     })
-    //     .catch(err => console.log(err));
-    // }
+    deleteHero(id) {
+      //   let PORT = this.PORT ? this.PORT : 3000;
+      //   fetch(`http://localhost:${PORT}/api/heroes/${id}`, {
+      //     method: "DELETE",
+      //     mode: "cors"
+      //   })
+      //     .then(resp => {
+      //       return resp.json();
+      //     })
+      //     .then(data => {
+      //       // delete from array
+      this.heroes = this.heroes.filter(hero => {
+        return hero.id !== id;
+      });
+      //     })
+      //     .catch(err => console.log(err));
+    }
   }
 };
 </script>

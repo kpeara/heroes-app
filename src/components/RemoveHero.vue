@@ -21,16 +21,11 @@
 export default {
   name: "RemoveHero",
   props: {
-    hero: Object,
-    heroes: Array
+    hero: Object
   },
   data: () => ({
-    dialog: false,
-    newHeroes: null
+    dialog: false
   }),
-  created() {
-    this.newHeroes = this.heroes;
-  },
   methods: {
     deleteHero(id) {
       this.dialog = false;
@@ -40,15 +35,9 @@ export default {
         method: "DELETE",
         mode: "cors"
       })
-        .then(resp => {
-          return resp.json();
-        })
-        .then(data => {
+        .then(() => {
           // delete from array
-          this.newHeroes = this.newHeroes.filter(hero => {
-            return hero.id !== data.id;
-          });
-          this.$emit("heroes", this.newHeroes);
+          this.$emit("delete-hero", id);
         })
         .catch(err => console.log(err));
     }
