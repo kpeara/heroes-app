@@ -13,6 +13,7 @@
           :yearRules="yearRules"
           :infoRules="infoRules"
         />
+        <v-btn dark class="ml-4 py-6 purple--text text--accent-1" @click="reverseOrder">ASC/DESC</v-btn>
       </v-col>
     </v-row>
     <v-row dense>
@@ -63,6 +64,7 @@ export default {
     PORT: 3000,
     error: false,
     errorMessage: "Unknown",
+    reversed: false,
     heroes: [
       /*
       data of the form:
@@ -119,7 +121,12 @@ export default {
           return resp.json();
         })
         .then(data => {
-          this.heroes.push(data);
+          if (!this.reversed) this.heroes.push(data);
+          else {
+            this.heroes.reverse();
+            this.heroes.push(data);
+            this.heroes.reverse();
+          }
         })
         .catch(err => this.errorNotify(err, "Failed to Add Hero"));
     },
@@ -157,6 +164,10 @@ export default {
           });
         })
         .catch(err => this.errorNotify(err, "Failed to Remove Hero"));
+    },
+    reverseOrder() {
+      this.heroes.reverse();
+      this.reversed = !this.reversed;
     },
     errorNotify(err, message = "") {
       console.error(err);
