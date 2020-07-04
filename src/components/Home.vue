@@ -28,6 +28,7 @@
 
           <v-card-actions>
             <EditHero
+              @hero-emitted="updateHero($event)"
               :hero="hero"
               :nameRules="nameRules"
               :yearRules="yearRules"
@@ -110,6 +111,27 @@ export default {
           this.heroes.push(data);
         })
         .catch(err => console.log(err));
+    },
+    updateHero(hero) {
+      // create payload
+      const data = {};
+      data["name"] = hero.name;
+      data["info"] = hero.info;
+      // optional fields
+      if (hero.year) {
+        data["year"] = parseInt(hero.year);
+      }
+
+      // PUT Request
+      let PORT = this.PORT ? this.PORT : 3000;
+      fetch(`http://localhost:${PORT}/api/heroes/${hero.id}`, {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }).catch(err => console.log(err));
     },
     deleteHero(id) {
       let PORT = this.PORT ? this.PORT : 3000;

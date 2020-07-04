@@ -39,7 +39,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="blue darken-1" text @click="reset">Close</v-btn>
-        <v-btn color="blue darken-1" text @click="updateHero">Save</v-btn>
+        <v-btn color="blue darken-1" text @click="emitHero">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -62,32 +62,23 @@ export default {
     this.newHero = { ...this.hero };
   },
   methods: {
-    updateHero() {
+    emitHero() {
       this.dialog = false;
       // updating new value
       this.hero.name = this.newHero.name;
       this.hero.year = this.newHero.year;
       this.hero.info = this.newHero.info;
 
-      // Data
-      const data = {};
-      data["name"] = this.hero.name;
-      data["info"] = this.hero.info;
-      // optional fields
-      if (this.year) {
-        data["year"] = parseInt(this.hero.year);
-      }
+      // // Data
+      // const data = {};
+      // data["name"] = this.hero.name;
+      // data["info"] = this.hero.info;
+      // // optional fields
+      // if (this.year) {
+      //   data["year"] = parseInt(this.hero.year);
+      // }
 
-      // PUT Request
-      let PORT = this.PORT ? this.PORT : 3000;
-      fetch(`http://localhost:${PORT}/api/heroes/${this.hero.id}`, {
-        method: "PUT",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      }).catch(err => console.log(err));
+      this.$emit("hero-emitted", this.hero);
     },
     reset() {
       this.dialog = false;
