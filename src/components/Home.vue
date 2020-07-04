@@ -33,6 +33,7 @@
               :yearRules="yearRules"
               :infoRules="infoRules"
             />
+            <RemoveHero :hero="hero" />
             <v-btn text class="pink--text" @click="deleteHero(hero.id)">Remove</v-btn>
           </v-card-actions>
         </v-card>
@@ -44,12 +45,14 @@
 <script>
 import AddHero from "./AddHero";
 import EditHero from "./EditHero";
+import RemoveHero from "./RemoveHero";
 
 export default {
   name: "Home",
   components: {
     AddHero,
-    EditHero
+    EditHero,
+    RemoveHero
   },
   data: () => ({
     PORT: 3000,
