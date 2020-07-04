@@ -1,8 +1,8 @@
 <template>
   <v-main class="mt-n10 mb-4">
-    <v-alert v-if="error" type="error" class="hidden">
+    <v-alert dark border="bottom" colored-border elevation="2" type="error" v-if="error">
       <v-row class="text-center">
-        <v-col class="grow">An unknown error occurred. Please try again.</v-col>
+        <v-col class="grow">Error: {{ errorMessage }}. Please Try Again.</v-col>
       </v-row>
     </v-alert>
     <v-row class="mb-2">
@@ -62,6 +62,7 @@ export default {
   data: () => ({
     PORT: 3000,
     error: false,
+    errorMessage: "Unknown",
     heroes: [
       /*
       data of the form:
@@ -100,7 +101,7 @@ export default {
       .then(data => {
         this.heroes = data;
       })
-      .catch(err => this.errorMessage(err));
+      .catch(err => this.errorNotify(err, "Failed to Retrieve Heroes"));
   },
   methods: {
     addHero(data) {
@@ -120,7 +121,7 @@ export default {
         .then(data => {
           this.heroes.push(data);
         })
-        .catch(err => this.errorMessage(err));
+        .catch(err => this.errorNotify(err, "Failed to Add Hero"));
     },
     updateHero(hero) {
       // create payload
@@ -141,7 +142,7 @@ export default {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
-      }).catch(err => this.errorMessage(err));
+      }).catch(err => this.errorNotify(err, "Failed to Update Hero"));
     },
     deleteHero(id) {
       // DELETE request
@@ -155,10 +156,11 @@ export default {
             return hero.id !== id;
           });
         })
-        .catch(err => this.errorMessage(err));
+        .catch(err => this.errorNotify(err, "Failed to Remove Hero"));
     },
-    errorMessage(err) {
-      console.log(err);
+    errorNotify(err, message = "") {
+      console.error(err);
+      this.errorMessage = message;
       this.error = true;
       setTimeout(() => (this.error = false), 5000);
     }
