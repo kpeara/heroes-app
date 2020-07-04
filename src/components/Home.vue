@@ -1,5 +1,10 @@
 <template>
   <v-main class="mt-n10 mb-4">
+    <v-alert v-if="error" type="error" class="hidden">
+      <v-row class="text-center">
+        <v-col class="grow">An unknown error occurred. Please try again.</v-col>
+      </v-row>
+    </v-alert>
     <v-row class="mb-2">
       <v-col class="ml-8">
         <AddHero
@@ -56,6 +61,7 @@ export default {
   },
   data: () => ({
     PORT: 3000,
+    error: false,
     heroes: [
       /*
       data of the form:
@@ -94,10 +100,11 @@ export default {
       .then(data => {
         this.heroes = data;
       })
-      .catch(err => console.log(err));
+      .catch(err => this.errorMessage(err));
   },
   methods: {
     addHero(data) {
+      // POST request
       let PORT = this.PORT ? this.PORT : 3000;
       fetch(`http://localhost:${PORT}/api/heroes/`, {
         method: "POST",
@@ -113,7 +120,7 @@ export default {
         .then(data => {
           this.heroes.push(data);
         })
-        .catch(err => console.log(err));
+        .catch(err => this.errorMessage(err));
     },
     updateHero(hero) {
       // create payload
@@ -134,9 +141,10 @@ export default {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
-      }).catch(err => console.log(err));
+      }).catch(err => this.errorMessage(err));
     },
     deleteHero(id) {
+      // DELETE request
       let PORT = this.PORT ? this.PORT : 3000;
       fetch(`http://localhost:${PORT}/api/heroes/${id}`, {
         method: "DELETE",
@@ -147,7 +155,12 @@ export default {
             return hero.id !== id;
           });
         })
-        .catch(err => console.log(err));
+        .catch(err => this.errorMessage(err));
+    },
+    errorMessage(err) {
+      console.log(err);
+      this.error = true;
+      setTimeout(() => (this.error = false), 5000);
     }
   }
 };
