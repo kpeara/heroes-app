@@ -43,7 +43,6 @@
 export default {
   name: "AddHero",
   props: {
-    heroes: Array,
     nameRules: Array,
     infoRules: Array,
     yearRules: Array

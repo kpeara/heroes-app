@@ -69,15 +69,6 @@ export default {
       this.hero.year = this.newHero.year;
       this.hero.info = this.newHero.info;
 
-      // // Data
-      // const data = {};
-      // data["name"] = this.hero.name;
-      // data["info"] = this.hero.info;
-      // // optional fields
-      // if (this.year) {
-      //   data["year"] = parseInt(this.hero.year);
-      // }
-
       this.$emit("hero-emitted", this.hero);
     },
     reset() {

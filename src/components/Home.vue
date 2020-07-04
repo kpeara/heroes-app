@@ -57,15 +57,18 @@ export default {
   data: () => ({
     PORT: 3000,
     heroes: [
-      // data of the form:
-      //   {
-      //     id: 1,
-      //     name: "Batman",
-      //     year: 1939,
-      //     info:
-      //       "Nah nah nah"
-      //   },
+      /*
+      data of the form:
+        {
+          id: 1,
+          name: "Batman",
+          year: 1939,
+          info:
+            "Nah nah nah"
+        },
+      */
     ],
+    // form validation rules
     nameRules: [
       v => (v && v.length <= 30) || "Max 30 characters",
       v => (v && v.length >= 3) || "Min 3 characters"
