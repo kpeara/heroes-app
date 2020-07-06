@@ -90,7 +90,9 @@ export default {
       v => !v || v.length == 4 || "Valid year",
       v =>
         !v ||
-        (parseInt(v) && parseInt(v) <= new Date().getUTCFullYear()) ||
+        (parseInt(v) &&
+          parseInt(v) <= new Date().getUTCFullYear() &&
+          parseInt(v) > 0) ||
         "Valid year"
     ]
   }),
