@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Navbar />
-    <v-main class="blue lighten-2">
+    <v-main class="deep-purple lighten-3">
       <Home />
     </v-main>
   </v-app>
