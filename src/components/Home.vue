@@ -61,7 +61,7 @@ export default {
     RemoveHero
   },
   data: () => ({
-    PORT: 3000,
+    PORT: 3001,
     error: false,
     errorMessage: "Unknown",
     reversed: false,
@@ -97,7 +97,7 @@ export default {
     ]
   }),
   created() {
-    let PORT = this.PORT ? this.PORT : 3000;
+    let PORT = this.PORT ? this.PORT : 3001;
     fetch(`http://localhost:${PORT}/api/heroes?`, { mode: "cors" })
       .then(res => {
         return res.json();
@@ -110,7 +110,7 @@ export default {
   methods: {
     addHero(data) {
       // POST request
-      let PORT = this.PORT ? this.PORT : 3000;
+      let PORT = this.PORT ? this.PORT : 3001;
       fetch(`http://localhost:${PORT}/api/heroes/`, {
         method: "POST",
         mode: "cors",
@@ -143,7 +143,7 @@ export default {
       }
 
       // PUT Request
-      let PORT = this.PORT ? this.PORT : 3000;
+      let PORT = this.PORT ? this.PORT : 3001;
       fetch(`http://localhost:${PORT}/api/heroes/${hero.id}`, {
         method: "PUT",
         mode: "cors",
@@ -155,7 +155,7 @@ export default {
     },
     deleteHero(id) {
       // DELETE request
-      let PORT = this.PORT ? this.PORT : 3000;
+      let PORT = this.PORT ? this.PORT : 3001;
       fetch(`http://localhost:${PORT}/api/heroes/${id}`, {
         method: "DELETE",
         mode: "cors"
