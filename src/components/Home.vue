@@ -105,7 +105,10 @@ export default {
       .then(data => {
         this.heroes = data;
       })
-      .catch(err => this.errorNotify(err, "Failed to Retrieve Heroes"));
+      .catch(err => {
+        console.log(err);
+        this.errorNotify(new Error("Failed to Retrieve Heroes"));
+      });
   },
   methods: {
     addHero(data) {
@@ -130,7 +133,10 @@ export default {
             this.heroes.reverse();
           }
         })
-        .catch(err => this.errorNotify(err, "Failed to Add Hero"));
+        .catch(err => {
+          console.log(err);
+          this.errorNotify(new Error("Failed to Add Hero"));
+        });
     },
     updateHero(hero) {
       // create payload
@@ -151,7 +157,10 @@ export default {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
-      }).catch(err => this.errorNotify(err, "Failed to Update Hero"));
+      }).catch(err => {
+        console.log(err);
+        this.errorNotify(new Error("Failed to Update Hero"));
+      });
     },
     deleteHero(id) {
       // DELETE request
@@ -165,15 +174,17 @@ export default {
             return hero.id !== id;
           });
         })
-        .catch(err => this.errorNotify(err, "Failed to Remove Hero"));
+        .catch(err => {
+          console.log(err);
+          this.errorNotify(new Error("Failed to Remove Hero"));
+        });
     },
     reverseOrder() {
       this.heroes.reverse();
       this.reversed = !this.reversed;
     },
-    errorNotify(err, message = "") {
-      console.error(err);
-      this.errorMessage = message;
+    errorNotify(err) {
+      this.errorMessage = err.message;
       this.error = true;
       setTimeout(() => (this.error = false), 5000);
     }
