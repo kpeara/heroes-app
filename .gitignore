@@ -22,4 +22,5 @@ pnpm-debug.log*
 *.sw?
 
 # mine
-app-api-test
+vue.config.js
+package-lock.json
