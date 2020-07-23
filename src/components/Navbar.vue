@@ -5,6 +5,9 @@
     <v-btn text fab class="red--text text--accent-2">
       <v-icon>mdi-exit-to-app</v-icon>
     </v-btn>
+    <v-btn text fab class="light-blue--text text--accent-2">
+      <v-icon>mdi-account-circle</v-icon>
+    </v-btn>
     <v-btn
       href="https://github.com/kpeara"
       target="_blank"
