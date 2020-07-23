@@ -49,16 +49,16 @@
 </template>
 
 <script>
-import AddHero from "./AddHero";
-import EditHero from "./EditHero";
-import RemoveHero from "./RemoveHero";
+import AddHero from "../components/AddHero";
+import EditHero from "../components/EditHero";
+import RemoveHero from "../components/RemoveHero";
 
 export default {
   name: "Home",
   components: {
     AddHero,
     EditHero,
-    RemoveHero
+    RemoveHero,
   },
   data: () => ({
     PORT: 3001,
@@ -79,33 +79,33 @@ export default {
     ],
     // form validation rules
     nameRules: [
-      v => (v && v.length <= 30) || "Max 30 characters",
-      v => (v && v.length >= 3) || "Min 3 characters"
+      (v) => (v && v.length <= 30) || "Max 30 characters",
+      (v) => (v && v.length >= 3) || "Min 3 characters",
     ],
     infoRules: [
-      v => (v && v.length <= 200) || "Max 200 characters",
-      v => (v && v.length >= 3) || "Min 5 characters"
+      (v) => (v && v.length <= 200) || "Max 200 characters",
+      (v) => (v && v.length >= 3) || "Min 5 characters",
     ],
     yearRules: [
-      v => !v || v.length == 4 || "Valid year",
-      v =>
+      (v) => !v || v.length == 4 || "Valid year",
+      (v) =>
         !v ||
         (parseInt(v) &&
           parseInt(v) <= new Date().getUTCFullYear() &&
           parseInt(v) > 0) ||
-        "Valid year"
-    ]
+        "Valid year",
+    ],
   }),
   created() {
     let PORT = this.PORT ? this.PORT : 3001;
     fetch(`http://localhost:${PORT}/api/heroes?`, { mode: "cors" })
-      .then(res => {
+      .then((res) => {
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         this.heroes = data;
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         this.errorNotify(new Error("Failed to Retrieve Heroes"));
       });
@@ -118,14 +118,14 @@ export default {
         method: "POST",
         mode: "cors",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       })
-        .then(resp => {
+        .then((resp) => {
           return resp.json();
         })
-        .then(data => {
+        .then((data) => {
           if (!this.reversed) this.heroes.push(data);
           else {
             this.heroes.reverse();
@@ -133,7 +133,7 @@ export default {
             this.heroes.reverse();
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           this.errorNotify(new Error("Failed to Add Hero"));
         });
@@ -154,10 +154,10 @@ export default {
         method: "PUT",
         mode: "cors",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(data)
-      }).catch(err => {
+        body: JSON.stringify(data),
+      }).catch((err) => {
         console.log(err);
         this.errorNotify(new Error("Failed to Update Hero"));
       });
@@ -167,14 +167,14 @@ export default {
       let PORT = this.PORT ? this.PORT : 3001;
       fetch(`http://localhost:${PORT}/api/heroes/${id}`, {
         method: "DELETE",
-        mode: "cors"
+        mode: "cors",
       })
         .then(() => {
-          this.heroes = this.heroes.filter(hero => {
+          this.heroes = this.heroes.filter((hero) => {
             return hero.id !== id;
           });
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           this.errorNotify(new Error("Failed to Remove Hero"));
         });
@@ -187,7 +187,7 @@ export default {
       this.errorMessage = err.message;
       this.error = true;
       setTimeout(() => (this.error = false), 5000);
-    }
-  }
+    },
+  },
 };
 </script>

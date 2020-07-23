@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Home from "./components/Home";
+import Home from "./views/Home";
 import Navbar from "./components/Navbar";
 
 export default {
@@ -16,11 +16,11 @@ export default {
 
   components: {
     Home,
-    Navbar
+    Navbar,
   },
 
   data: () => ({
     //
-  })
+  }),
 };
 </script>
