@@ -23,7 +23,7 @@
       v-if="success"
     >
       <v-row class="text-center">
-        <v-col class="grow">Success! Redirecting to Login.</v-col>
+        <v-col class="grow">{{ successMessage }}</v-col>
       </v-row>
     </v-alert>
     <v-card dark class="mx-auto elevation-12" max-width="500">
@@ -71,6 +71,7 @@ export default {
     error: false,
     success: false,
     errorMessage: "",
+    successMessage: "",
     username: "",
     password: "",
     // validation rules
@@ -102,7 +103,7 @@ export default {
             // if good response, redirect user to login page
             if (resp.ok) {
               console.log("User Registered");
-              this.successNotify();
+              this.successNotify("Success! Redirecting to Login.");
             } else {
               console.log("An error occurred.");
               this.errorNotify(new Error("Username Already Exists")); // send custom error when username is not unique
@@ -121,7 +122,8 @@ export default {
       this.error = true;
       setTimeout(() => (this.error = false), 5000);
     },
-    successNotify() {
+    successNotify(msg) {
+      this.successMessage = msg;
       this.success = true;
       setTimeout(() => (this.success = false), 3000);
     },

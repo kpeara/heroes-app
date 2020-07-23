@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn dark v-bind="attrs" v-on="on" class="py-6 green--text text--accent-4">Add Hero</v-btn>
+      <v-btn dark v-bind="attrs" v-on="on" class="py-6 green--text text--accent-3">Add Hero</v-btn>
     </template>
     <v-card>
       <v-card-title class="green accent-4">
@@ -45,13 +45,13 @@ export default {
   props: {
     nameRules: Array,
     infoRules: Array,
-    yearRules: Array
+    yearRules: Array,
   },
   data: () => ({
     dialog: false,
     name: "",
     info: "",
-    year: null
+    year: null,
   }),
   methods: {
     emitHero() {
@@ -73,8 +73,8 @@ export default {
         this.emitHero();
         this.$refs.form.reset();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
