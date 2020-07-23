@@ -23,7 +23,7 @@
       v-if="success"
     >
       <v-row class="text-center">
-        <v-col class="grow">Login Successful</v-col>
+        <v-col class="grow">{{ successMessage }}</v-col>
       </v-row>
     </v-alert>
     <v-card dark class="mx-auto elevation-12" max-width="500">
@@ -64,13 +64,13 @@
 </template>
 
 <script>
+import { notifyMixin } from "../mixins/notifyMixin";
+
 export default {
   name: "Login",
+  mixins: [notifyMixin],
   data: () => ({
     PORT: 3002,
-    error: false,
-    success: false,
-    errorMessage: "",
     username: "",
     password: "",
     validationRules: [(v) => v != "" || "Required"],
@@ -106,15 +106,6 @@ export default {
           });
         this.$refs.form.reset();
       }
-    },
-    errorNotify(err) {
-      this.errorMessage = err.message;
-      this.error = true;
-      setTimeout(() => (this.error = false), 5000);
-    },
-    successNotify() {
-      this.success = true;
-      setTimeout(() => (this.success = false), 3000);
     },
   },
 };
