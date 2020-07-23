@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn dark text class="pink--text text--darken-1" v-bind="attrs" v-on="on">Remove</v-btn>
     </template>
-    <v-alert prominent primary class="red accent-2 white--text">
+    <v-alert class="red accent-2 white--text">
       <v-row align="center">
         <v-col
           class="font-weight-bold"
@@ -21,17 +21,17 @@
 export default {
   name: "RemoveHero",
   props: {
-    hero: Object
+    hero: Object,
   },
   data: () => ({
-    dialog: false
+    dialog: false,
   }),
   methods: {
     emitHero(id) {
       this.dialog = false;
       // emit hero id
       this.$emit("hero-emitted", id);
-    }
-  }
+    },
+  },
 };
 </script>
