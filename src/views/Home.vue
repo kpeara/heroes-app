@@ -13,7 +13,7 @@
           :yearRules="yearRules"
           :infoRules="infoRules"
         />
-        <v-btn dark class="ml-4 py-6 purple--text text--accent-2" @click="reverseOrder">ASC/DESC</v-btn>
+        <v-btn dark class="ml-4 py-6 orange--text text--accent-2" @click="reverseOrder">ASC/DESC</v-btn>
       </v-col>
     </v-row>
     <v-row dense>
