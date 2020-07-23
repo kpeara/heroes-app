@@ -26,8 +26,8 @@
         <v-col class="grow">Success! Redirecting to Login.</v-col>
       </v-row>
     </v-alert>
-    <v-card class="mx-auto elevation-12" max-width="500">
-      <v-card-title class="blue--text text--darken-1">
+    <v-card dark class="mx-auto elevation-12" max-width="500">
+      <v-card-title class="indigo">
         <span class="headline">Register</span>
       </v-card-title>
       <v-card-text>
