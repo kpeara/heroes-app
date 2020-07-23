@@ -23,12 +23,12 @@
       v-if="success"
     >
       <v-row class="text-center">
-        <v-col class="grow">Success! Redirecting to Login.</v-col>
+        <v-col class="grow">Login Successful</v-col>
       </v-row>
     </v-alert>
     <v-card dark class="mx-auto elevation-12" max-width="500">
       <v-card-title class="purple--text text--lighten-2">
-        <span class="headline">Register</span>
+        <span class="headline">Login</span>
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
@@ -36,9 +36,9 @@
             <v-col cols="12">
               <v-text-field
                 label="Username"
-                :rules="usernameRules"
                 counter
                 maxlength="15"
+                :rules="validationRules"
                 required
                 v-model="username"
               ></v-text-field>
@@ -47,7 +47,7 @@
               <v-text-field
                 label="Password"
                 type="password"
-                :rules="passwordRules"
+                :rules="validationRules"
                 required
                 v-model="password"
               ></v-text-field>
@@ -57,7 +57,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="purple lighten-2" text @click="register">Sign Up</v-btn>
+        <v-btn color="purple lighten-2" text @click="login">Sign In</v-btn>
       </v-card-actions>
     </v-card>
   </v-main>
@@ -65,7 +65,7 @@
 
 <script>
 export default {
-  name: "Register",
+  name: "Login",
   data: () => ({
     PORT: 3002,
     error: false,
@@ -73,25 +73,20 @@ export default {
     errorMessage: "",
     username: "",
     password: "",
-    // validation rules
-    usernameRules: [
-      (v) => (v && v.length >= 3) || "Min 3 characters",
-      (v) => (v && v.length <= 15) || "Max 15 characters",
-    ],
-    passwordRules: [(v) => (v && v.length >= 5) || "Min 5 characters"],
+    validationRules: [(v) => v != "" || "Required"],
   }),
   methods: {
-    register() {
+    login() {
       if (this.$refs.form.validate()) {
         // creating user object
         const user = {};
         user["username"] = this.username;
-        user["password"] = this.password; // HASH THIS
+        user["password"] = this.password;
 
-        // register user
+        // login user
         let PORT = this.PORT ? this.PORT : 3002;
-        fetch(`http://localhost:${PORT}/api/user/register`, {
-          method: "POST",
+        fetch(`http://localhost:${PORT}/api/user/login`, {
+          method: "POST", // might change to POST for token creation
           mode: "cors",
           headers: {
             "Content-Type": "application/json",
@@ -99,20 +94,16 @@ export default {
           body: JSON.stringify(user),
         })
           .then((resp) => {
-            // if good response, redirect user to login page
             if (resp.ok) {
-              console.log("User Registered");
               this.successNotify();
             } else {
-              console.log("An error occurred.");
-              this.errorNotify(new Error("Username Already Exists")); // send custom error when username is not unique
+              this.errorNotify(new Error("User Not Found"));
             }
           })
           .catch((err) => {
             console.log(err);
-            this.errorNotify(new Error("Failed to Register User"));
+            this.errorNotify(new Error("Failed to Login"));
           });
-
         this.$refs.form.reset();
       }
     },
