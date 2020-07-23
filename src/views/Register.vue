@@ -6,32 +6,6 @@
       :successMessage="successMessage"
       :errorMessage="errorMessage"
     />
-    <!-- <v-alert
-      dark
-      border="bottom"
-      colored-border
-      elevation="2"
-      type="error"
-      class="mt-n14 mb-14"
-      v-if="error"
-    >
-      <v-row class="text-center">
-        <v-col class="grow">Error: {{ errorMessage }}. Please Try Again.</v-col>
-      </v-row>
-    </v-alert>
-    <v-alert
-      dark
-      border="bottom"
-      colored-border
-      elevation="2"
-      type="success"
-      class="mt-n14 mb-14"
-      v-if="success"
-    >
-      <v-row class="text-center">
-        <v-col class="grow">{{ successMessage }}</v-col>
-      </v-row>
-    </v-alert>-->
     <v-card dark class="mx-auto elevation-12" max-width="500">
       <v-card-title class="purple--text text--lighten-2">
         <span class="headline">Register</span>
@@ -110,7 +84,7 @@ export default {
             // if good response, redirect user to login page
             if (resp.ok) {
               console.log("User Registered");
-              this.successNotify("Success! Redirecting to Login.");
+              this.successNotify("Redirecting to Login.");
             } else {
               console.log("An error occurred.");
               this.errorNotify(new Error("Username Already Exists")); // send custom error when username is not unique

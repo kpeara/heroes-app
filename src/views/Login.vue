@@ -1,31 +1,11 @@
 <template>
-  <v-main class="mt-14">
-    <v-alert
-      dark
-      border="bottom"
-      colored-border
-      elevation="2"
-      type="error"
-      class="mt-n14 mb-14"
-      v-if="error"
-    >
-      <v-row class="text-center">
-        <v-col class="grow">Error: {{ errorMessage }}. Please Try Again.</v-col>
-      </v-row>
-    </v-alert>
-    <v-alert
-      dark
-      border="bottom"
-      colored-border
-      elevation="2"
-      type="success"
-      class="mt-n14 mb-14"
-      v-if="success"
-    >
-      <v-row class="text-center">
-        <v-col class="grow">{{ successMessage }}</v-col>
-      </v-row>
-    </v-alert>
+  <v-main class>
+    <Notification
+      :success="success"
+      :error="error"
+      :successMessage="successMessage"
+      :errorMessage="errorMessage"
+    />
     <v-card dark class="mx-auto elevation-12" max-width="500">
       <v-card-title class="purple--text text--lighten-2">
         <span class="headline">Login</span>
@@ -65,10 +45,12 @@
 
 <script>
 import { notifyMixin } from "../mixins/notifyMixin";
+import Notification from "../components/Notification";
 
 export default {
   name: "Login",
   mixins: [notifyMixin],
+  components: { Notification },
   data: () => ({
     PORT: 3002,
     username: "",
@@ -95,7 +77,7 @@ export default {
         })
           .then((resp) => {
             if (resp.ok) {
-              this.successNotify();
+              this.successNotify("Authenticated!");
             } else {
               this.errorNotify(new Error("User Not Found"));
             }

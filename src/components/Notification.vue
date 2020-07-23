@@ -23,7 +23,7 @@
       v-if="success"
     >
       <v-row class="text-center">
-        <v-col class="grow">{{ successMessage }}</v-col>
+        <v-col class="grow">Success: {{ successMessage }}</v-col>
       </v-row>
     </v-alert>
   </v-main>
