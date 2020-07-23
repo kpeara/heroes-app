@@ -1,6 +1,12 @@
 <template>
-  <v-main class="mt-14">
-    <v-alert
+  <v-main>
+    <Notification
+      :success="success"
+      :error="error"
+      :successMessage="successMessage"
+      :errorMessage="errorMessage"
+    />
+    <!-- <v-alert
       dark
       border="bottom"
       colored-border
@@ -25,7 +31,7 @@
       <v-row class="text-center">
         <v-col class="grow">{{ successMessage }}</v-col>
       </v-row>
-    </v-alert>
+    </v-alert>-->
     <v-card dark class="mx-auto elevation-12" max-width="500">
       <v-card-title class="purple--text text--lighten-2">
         <span class="headline">Register</span>
@@ -65,10 +71,12 @@
 
 <script>
 import { notifyMixin } from "../mixins/notifyMixin";
+import Notification from "../components/Notification";
 
 export default {
   name: "Register",
   mixins: [notifyMixin],
+  components: { Notification },
   data: () => ({
     PORT: 3002,
     username: "",
