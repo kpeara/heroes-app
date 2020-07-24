@@ -15,7 +15,15 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    beforeEnter: (to, from, next) => {
+      if (!store.getters.getJWT) {
+        next();
+      }
+      else {
+        next("heroes");
+      }
+    }
   },
   {
     path: '/register',
@@ -23,7 +31,15 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Register.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/Register.vue'),
+    beforeEnter: (to, from, next) => {
+      if (!store.getters.getJWT) {
+        next();
+      }
+      else {
+        next("heroes");
+      }
+    }
   },
   {
     path: '/heroes',
@@ -37,7 +53,7 @@ const routes = [
         next();
       }
       else {
-        next("Login");
+        next("login");
       }
     }
   }

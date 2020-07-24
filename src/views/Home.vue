@@ -5,7 +5,7 @@
         <v-col class="grow">Error: {{ errorMessage }}. Please Try Again.</v-col>
       </v-row>
     </v-alert>
-    <v-row class="mb-2">
+    <v-row v-if="retrieved" class="mb-2">
       <v-col class="ml-8">
         <AddHero
           @hero-emitted="addHero($event)"
@@ -63,6 +63,7 @@ export default {
   data: () => ({
     PORT: 3001,
     error: false,
+    retrieved: false,
     errorMessage: "Unknown",
     reversed: false,
     heroes: [
@@ -105,7 +106,15 @@ export default {
       }),
     })
       .then((res) => {
-        return res.json();
+        if (res.status === 401) {
+          // token expired, so clear sessionHistory and redirect to login
+          console.log("Authorization Failed");
+          sessionStorage.clear();
+          this.$router.push({ name: "Login" });
+        } else {
+          this.retrieved = true;
+          return res.json();
+        }
       })
       .then((data) => {
         this.heroes = data;
@@ -113,6 +122,7 @@ export default {
       .catch((err) => {
         console.log(err);
         this.errorNotify(new Error("Failed to Retrieve Heroes"));
+        this.retrieved = false;
       });
   },
   methods: {
