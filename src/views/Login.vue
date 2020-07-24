@@ -77,17 +77,12 @@ export default {
           body: JSON.stringify(user),
         })
           .then((resp) => {
-            // if (resp.ok) {
-            // this.successNotify("Authenticated!");
             return resp.json();
-            // } else {
-            //   this.errorNotify(new Error("User Not Found")); // shouldn't tell user about who exists
-            // }
           })
           .then((data) => {
             console.log(data);
             // store using vueex
-            this.$router.replace({ name: "Home" });
+            // this.$router.replace({ name: "Home" });
           })
           .catch((err) => {
             console.log(err);
