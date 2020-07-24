@@ -78,6 +78,8 @@ export default {
           .then((resp) => {
             if (resp.ok) {
               this.successNotify("Authenticated!");
+              console.log(this.$router);
+              this.$router.replace({ name: "Home" });
             } else {
               this.errorNotify(new Error("User Not Found"));
             }
