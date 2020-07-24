@@ -80,9 +80,9 @@ export default {
             return resp.json();
           })
           .then((data) => {
-            console.log(data);
-            // store using vueex
-            // this.$router.replace({ name: "Home" });
+            // store jwt using vuex
+            this.$store.commit("setJWT", data);
+            this.$router.replace({ name: "Home" });
           })
           .catch((err) => {
             console.log(err);
