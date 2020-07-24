@@ -6,7 +6,7 @@
       :successMessage="successMessage"
       :errorMessage="errorMessage"
     />
-    <v-card dark class="mx-auto elevation-12" max-width="500">
+    <v-card class="mx-auto elevation-12" max-width="500">
       <v-card-title class="purple--text text--lighten-2">
         <span class="headline">Register</span>
       </v-card-title>
