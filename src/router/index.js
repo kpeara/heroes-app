@@ -33,7 +33,8 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue'),
     beforeEnter: (to, from, next) => {
-      if (store.state.jwt) {
+      if (store.getters.getJWT) {
+        console.log(store.getters.getJWT);
         console.log(store.state.jwt);
         next();
       }

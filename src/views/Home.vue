@@ -98,7 +98,13 @@ export default {
   }),
   created() {
     let PORT = this.PORT ? this.PORT : 3001;
-    fetch(`http://localhost:${PORT}/api/heroes?`, { mode: "cors" })
+    // const bearer = "Bearer" + this.$store.jwt;
+    fetch(`http://localhost:${PORT}/api/heroes?`, {
+      mode: "cors",
+      // headers: new Headers({
+      //   Authorization: bearer,
+      // }),
+    })
       .then((res) => {
         return res.json();
       })
