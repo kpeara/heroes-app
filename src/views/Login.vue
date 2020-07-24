@@ -33,6 +33,7 @@
               ></v-text-field>
             </v-col>
           </v-row>
+          <router-link :to="{name: 'Register'}">Not an existing user? Register here!</router-link>
         </v-form>
       </v-card-text>
       <v-card-actions>

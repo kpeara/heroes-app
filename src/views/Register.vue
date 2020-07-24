@@ -84,7 +84,8 @@ export default {
             // if good response, redirect user to login page
             if (resp.ok) {
               console.log("User Registered");
-              this.successNotify("Redirecting to Login.");
+              // this.successNotify("Redirecting to Login.");
+              this.$router.replace({ name: "Login" });
             } else {
               console.log("An error occurred.");
               this.errorNotify(new Error("Username Already Exists")); // send custom error when username is not unique
