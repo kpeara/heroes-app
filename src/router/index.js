@@ -34,8 +34,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue'),
     beforeEnter: (to, from, next) => {
       if (store.getters.getJWT) {
-        console.log(store.getters.getJWT);
-        console.log(store.state.jwt);
         next();
       }
       else {
