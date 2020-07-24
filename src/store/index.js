@@ -22,7 +22,6 @@ export default new Vuex.Store({
   },
   getters: {
     getJWT(state) {
-      console.log(state.jwt);
       return state.jwt;
     }
   }

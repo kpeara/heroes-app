@@ -110,6 +110,8 @@ export default {
           // token expired, so clear sessionHistory and redirect to login
           console.log("Authorization Failed");
           sessionStorage.clear();
+          const disableToken = { accessToken: null };
+          this.$store.commit("setJWT", disableToken); // so navigation allows redirect
           this.$router.push({ name: "Login" });
         } else {
           this.retrieved = true;
