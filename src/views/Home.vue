@@ -52,9 +52,11 @@
 import AddHero from "../components/AddHero";
 import EditHero from "../components/EditHero";
 import RemoveHero from "../components/RemoveHero";
+import { logoutMixin } from "../mixins/logoutMixin";
 
 export default {
   name: "Home",
+  mixins: [logoutMixin],
   components: {
     AddHero,
     EditHero,
@@ -109,10 +111,7 @@ export default {
         if (res.status === 401) {
           // token expired, so clear sessionHistory and redirect to login
           console.log("Authorization Failed");
-          sessionStorage.clear(); // remove token from storage
-          const disableToken = { accessToken: null };
-          this.$store.commit("setJWT", disableToken); // so navigation allows redirect
-          this.$router.push({ name: "Login" });
+          this.logout();
         } else {
           this.retrieved = true;
           return res.json();

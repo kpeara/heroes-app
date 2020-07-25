@@ -29,15 +29,9 @@
 </template>
 
 <script>
+import { logoutMixin } from "../mixins/logoutMixin";
 export default {
   name: "Navbar",
-  methods: {
-    logout() {
-      sessionStorage.clear(); // remove token from storage
-      const disableToken = { accessToken: null };
-      this.$store.commit("setJWT", disableToken); // so navigation allows redirect
-      this.$router.push({ name: "Login" });
-    },
-  },
+  mixins: [logoutMixin],
 };
 </script>
