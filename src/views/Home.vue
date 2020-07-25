@@ -53,10 +53,11 @@ import AddHero from "../components/AddHero";
 import EditHero from "../components/EditHero";
 import RemoveHero from "../components/RemoveHero";
 import { logoutMixin } from "../mixins/logoutMixin";
+import { notifyMixin } from "../mixins/notifyMixin";
 
 export default {
   name: "Home",
-  mixins: [logoutMixin],
+  mixins: [notifyMixin, logoutMixin],
   components: {
     AddHero,
     EditHero,
@@ -198,11 +199,6 @@ export default {
     reverseOrder() {
       this.heroes.reverse();
       this.reversed = !this.reversed;
-    },
-    errorNotify(err) {
-      this.errorMessage = err.message;
-      this.error = true;
-      setTimeout(() => (this.error = false), 5000);
     },
   },
 };
