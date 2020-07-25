@@ -33,6 +33,10 @@
               ></v-text-field>
             </v-col>
           </v-row>
+          <router-link
+            :to="{name: 'Login'}"
+            class="light-blue--text text--lighten-3"
+          >Already have an account? Login here!</router-link>
         </v-form>
       </v-card-text>
       <v-card-actions>
