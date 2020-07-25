@@ -6,8 +6,8 @@
       :successMessage="successMessage"
       :errorMessage="errorMessage"
     />
-    <v-card class="mx-auto elevation-12" max-width="500">
-      <v-card-title class="purple--text text--lighten-2">
+    <v-card dark class="mx-auto elevation-12" max-width="500">
+      <v-card-title class="teal--text text--accent-1">
         <span class="headline">Register</span>
       </v-card-title>
       <v-card-text>
@@ -37,7 +37,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="purple lighten-2" text @click="register">Sign Up</v-btn>
+        <v-btn color="teal accent-1" text @click="register">Sign Up</v-btn>
       </v-card-actions>
     </v-card>
   </v-main>

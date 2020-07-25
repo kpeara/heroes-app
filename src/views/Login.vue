@@ -7,7 +7,7 @@
       :errorMessage="errorMessage"
     />
     <v-card dark class="mx-auto elevation-12" max-width="500">
-      <v-card-title class="purple--text text--lighten-2">
+      <v-card-title class="teal--text text--accent-1">
         <span class="headline">Login</span>
       </v-card-title>
       <v-card-text>
@@ -33,12 +33,15 @@
               ></v-text-field>
             </v-col>
           </v-row>
-          <router-link :to="{name: 'Register'}">Not an existing user? Register here!</router-link>
+          <router-link
+            :to="{name: 'Register'}"
+            class="light-blue--text text--lighten-3"
+          >Not an existing user? Register here!</router-link>
         </v-form>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="purple lighten-2" text @click="login">Sign In</v-btn>
+        <v-btn color="teal accent-1" text @click="login">Sign In</v-btn>
       </v-card-actions>
     </v-card>
   </v-main>
